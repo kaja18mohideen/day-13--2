@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagination Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    #pagination-container {
+      display: flex;
+      list-style: none;
+      padding: 0;
+    }
+
+    .pagination-item {
+      margin: 5px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: #f2f2f2;
+      user-select: none;
+    }
+
+    .pagination-item:hover {
+      background-color: #ddd;
+    }
+
+    .pagination-item.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div id="data-container">
+  <div class="data-item">id: 1,</div>
+  <div class="data-item">name:Lura Senger,</div>
+  <div class="data-item">email: Xander_Collier@yahoo.com</div>
+  <div class="data-item">id: 2,</div>
+  <div class="data-item">name:Wilburn Weber,</div>
+  <div class="data-item">email: Bennett_Kreiger11@yahoo.com</div>
+  <div class="data-item">id: 3,</div>
+  <div class="data-item">name:Tyrique Hahn,</div>
+  <div class="data-item">email: Juston.Altenwerth@yahoo.com</div>
+  <div class="data-item">id: 4,</div>
+  <div class="data-item">name:Lenny Bailey,</div>
+  <div class="data-item">email: Guiseppe_Hegmann@yahoo.com</div>
+  <div class="data-item">id: 5,</div>
+  <div class="data-item">name:Vladimir Keeling,</div>
+  <div class="data-item">email: Louisa_Walsh18@hotmail.com</div>
+  <div class="data-item">id: 6,</div>
+  <div class="data-item">name:Kellie Crona,</div>
+  <div class="data-item">email: Chandler_Abernathy@yahoo.com</div>
+  <div class="data-item">id: 7,</div>
+  <div class="data-item">name:Carolina White,</div>
+  <div class="data-item">email: Royal50@hotmail.com </div>
+  <div class="data-item">id: 8,</div>
+  <div class="data-item">name:Alfredo Conn,</div>
+  <div class="data-item">email: Clarabelle34@hotmail.com</div>
+  <div class="data-item">id: 9,</div>
+  <div class="data-item">name:Stan Shanahan,</div>
+  <div class="data-item">email: Lamar.McClure@hotmail.com</div>
+  <div class="data-item">id: 10,</div>
+  <div class="data-item">name:Marvin Fay,</div>
+  <div class="data-item">email: Osbaldo58@hotmail.com</div>
+  
+
+ 
+
+<ul id="pagination-container"></ul>
+
+<script>
+
+const itemsPerPage = 6;
+const data = document.querySelectorAll('.data-item');
+const totalPages = Math.ceil(data.length / itemsPerPage);
+function displayData(page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  data.forEach((item) => {
+    item.style.display = 'none';
+  });
+  for (let i = startIndex; i < endIndex; i++) {
+    if (data[i]) {
+      data[i].style.display = 'block';
+    }
+  }
+}
+function createPaginationButtons() {
+  const paginationContainer = document.getElementById('pagination-container');
+
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement('li');
+    button.textContent = i;
+    button.classList.add('pagination-item');
+
+    button.addEventListener('click', function () {
+      document.querySelectorAll('.pagination-item').forEach((item) => {
+        item.classList.remove('active');
+      });
+
+
+      this.classList.add('active');
+
+      
+      displayData(i);
+    });
+
+    paginationContainer.appendChild(button);
+  }
+
+  
+  paginationContainer.firstChild.classList.add('active');
+}
+
+
+createPaginationButtons();
+displayData(1);
+</script>
+
+</body>
+</html>
